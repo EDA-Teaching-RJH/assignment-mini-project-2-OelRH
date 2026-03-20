@@ -12,6 +12,6 @@ class deck:
             for suit in deck.suits:
                 self.cards.append(card(suit,rank))
 
-def shuffle_deck(self): #using an already built function, this easily shuffles the list of cards in deck
-    shuffle(self.cards)
+    def shuffle_deck(self): #using an already built function, this easily shuffles the list of cards in deck
+        shuffle(self.cards)
 

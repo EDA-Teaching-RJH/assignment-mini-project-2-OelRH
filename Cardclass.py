@@ -7,7 +7,6 @@ class card:
 
     def __str__(self):
         return f"{self.suit} {self.number}" #This returns the objects as a string
-    
-    
+   
 
 
