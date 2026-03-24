@@ -13,5 +13,5 @@ def EmptyHand(self):
     self.hand = []
 def GetCash(self):
     return self.cash
-
-
+def SetCash(self, NewCash):
+    self.cash = NewCash
