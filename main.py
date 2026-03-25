@@ -32,6 +32,11 @@ def main():
         if player_hand_value == 21:
             handle_blackjack(player, dealer, deck, bet)
 
+        player.EmptyHand()
+        dealer.EmptyHand()
+
+    
+
 def handle_bet(player):
     while True:
         bet = int(input("Please enter amount of cash you wish to bet: £"))
@@ -85,6 +90,19 @@ def handle_dealer(hand, dealer, deck):
         dealer.ShowHand()
 
     return hand_value
+
+def handle_continual_play():
+    while True:
+        keep_playing = input("Press Q to Quit or C to Continue: ")
+
+        if keep_playing.lower() != "q" and keep_playing.lower() != "c":
+            print("please enter q or c")
+        else:
+            if keep_playing.lower() == "q":
+                return False
+            if keep_playing.lower() == "c":
+                return True
+            
 
 
 
