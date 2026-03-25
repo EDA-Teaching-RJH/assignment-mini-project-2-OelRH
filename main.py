@@ -29,6 +29,9 @@ def main():
 
         player_hand_value = calculate_hand_value(player.GetHand())
 
+        if player_hand_value == 21:
+            handle_blackjack(player, dealer, deck, bet)
+
 def handle_bet(player):
     while True:
         bet = int(input("Please enter amount of cash you wish to bet: £"))
@@ -56,6 +59,7 @@ def calculate_hand_value(hand):
         num_of_aces -= 1
     
     return hand_value
+
 
 
 
