@@ -32,13 +32,13 @@ def main():
         if player_hand_value == 21:
             handle_blackjack(player, dealer, deck, bet)
 
-        player.EmptyHand()
-        dealer.EmptyHand()
+            player.EmptyHand()
+            dealer.EmptyHand()
 
-        if handle_continual_play():
-            continue
-        else:
-            return
+            if handle_continual_play():
+                continue
+            else:
+                return
         
         while player_hand_value < 21:
             next_move = input("Press H to hit or S to stand ")
@@ -101,7 +101,14 @@ def main():
                         print("No more money, you lose!")
                         return
 
+                if player_hand_value >= 21:
+                    player.EmptyHand()
+                    dealer.EmptyHand()
 
+                    if handle_continual_play():
+                        break
+                    else:
+                        return
 
 
 def handle_bet(player):

@@ -18,6 +18,8 @@ class deck:
     def shuffle(self): #using an already built function, this easily shuffles the list of cards in deck
         random.shuffle(self.cards)
 
+    def deal(self):
+        return self.cards.pop()
 
 
 
