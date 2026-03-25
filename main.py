@@ -39,6 +39,15 @@ def main():
             continue
         else:
             return
+        
+        while player_hand_value < 21:
+            next_move = input("Press H to hit or S to stand ")
+
+            if next_move.lower() == "s":
+                dealer_hand_value = handle_dealer(dealer.GetHand(), dealer, deck)
+
+                if dealer_hand_value == 21:
+                    
 
 def handle_bet(player):
     while True:
