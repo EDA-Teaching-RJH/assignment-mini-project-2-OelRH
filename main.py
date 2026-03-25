@@ -47,7 +47,62 @@ def main():
                 dealer_hand_value = handle_dealer(dealer.GetHand(), dealer, deck)
 
                 if dealer_hand_value == 21:
+                    sleep(0.5)
+                    print("BLACK JACK! House wins ")
+                
+                    if player.GetCash() == 0:
+                        print("No more money, you lose!")
+                        return
                     
+                elif dealer_hand_value > 21:
+                    sleep(0.5)
+                    print("Dealer bust, Player wins!")
+                    player.SetCash(player.GetCash() + (bet * 2))
+                
+                elif dealer_hand_value < player_hand_value:
+                    sleep(0.5)
+                    print("Player wins!")
+                    player.SetCash(player.GetCash() + (bet * 2))
+                     
+                elif dealer_hand_value > player_hand_value:
+                    sleep(0.5)
+                    print("House wins!")
+                    
+                    if player.GetCash() == 0:
+                        print("No more money, you lose!")
+
+                elif dealer_hand_value == player_hand_value:
+                    sleep(0.5)
+                    print("Push, draw")
+                    player.SetCash(player.GetCash() + bet)
+
+                player.EmptyHand()
+                dealer.EmptyHand()
+                
+                if handle_continual_play():
+                    break
+                else:
+                    return
+            
+            if next_move.lower() == "h":
+                player.GetCard(deck.deal())
+                player.ShowHand()
+                player_hand_value = calculate_hand_value(player.GetHand())
+
+                print(f"Hand's Value: {player_hand_value}")
+
+                if player_hand_value == 21:
+                    handle_blackjack(player, dealer, deck, bet)
+                    
+                if player_hand_value > 21:
+                    print("Bust! House wins!")
+                    
+                    if player.GetCash() == 0:
+                        print("No more money, you lose!")
+                        return
+
+
+
 
 def handle_bet(player):
     while True:
