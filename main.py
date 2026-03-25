@@ -9,28 +9,28 @@ values = dict(zip(deck.ranks,[11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]))
 def main():
     deck = decks(6)
     deck.shuffle()
-    player = player()
-    dealer = dealer()
+    Player = player()
+    Dealer = dealer()
 
-    print(f"Welcome to the Black Parade \n Starting cash: {player.cash}\n ")
+    print(f"Welcome to the Black Parade \n Starting cash: {Player.cash}\n ")
 
     while True:
-        print(f"Current cash: £{player.GetCash()}\n ")
+        print(f"Current cash: £{Player.GetCash()}\n ")
 
-        bet = handle_bet(player)
-        player.SetCash(player.GetCash() - bet)
+        bet = handle_bet(Player)
+        Player.SetCash(Player.GetCash() - bet)
         
         for _ in range(2):
-            player.GetCard(deck.deal())
+            Player.GetCard(deck.deal())
             dealer.GetCard(deck.deal())
 
-        player.showhand()
+        Player.showhand()
         dealer.showhand(1)
 
-        player_hand_value = calculate_hand_value(player.GetHand())
+        Player_hand_value = calculate_hand_value(Player.GetHand())
 
-        if player_hand_value == 21:
-            handle_blackjack(player, dealer, deck, bet)
+        if Player_hand_value == 21:
+            handle_blackjack(Player, Dealer, deck, bet)
 
             player.EmptyHand()
             dealer.EmptyHand()
@@ -40,13 +40,13 @@ def main():
             else:
                 return
         
-        while player_hand_value < 21:
+        while Player_hand_value < 21:
             next_move = input("Press H to hit or S to stand ")
 
             if next_move.lower() == "s":
-                dealer_hand_value = handle_dealer(dealer.GetHand(), dealer, deck)
+                Dealer_hand_value = handle_dealer(dealer.GetHand(), Dealer, deck)
 
-                if dealer_hand_value == 21:
+                if Dealer_hand_value == 21:
                     sleep(0.5)
                     print("BLACK JACK! House wins ")
                 
@@ -54,24 +54,24 @@ def main():
                         print("No more money, you lose!")
                         return
                     
-                elif dealer_hand_value > 21:
+                elif Dealer_hand_value > 21:
                     sleep(0.5)
                     print("Dealer bust, Player wins!")
                     player.SetCash(player.GetCash() + (bet * 2))
                 
-                elif dealer_hand_value < player_hand_value:
+                elif Dealer_hand_value < player_hand_value:
                     sleep(0.5)
                     print("Player wins!")
                     player.SetCash(player.GetCash() + (bet * 2))
                      
-                elif dealer_hand_value > player_hand_value:
+                elif Dealer_hand_value > Player_hand_value:
                     sleep(0.5)
                     print("House wins!")
                     
                     if player.GetCash() == 0:
                         print("No more money, you lose!")
 
-                elif dealer_hand_value == player_hand_value:
+                elif Dealer_hand_value == player_hand_value:
                     sleep(0.5)
                     print("Push, draw")
                     player.SetCash(player.GetCash() + bet)
@@ -91,17 +91,17 @@ def main():
 
                 print(f"Hand's Value: {player_hand_value}")
 
-                if player_hand_value == 21:
+                if Player_hand_value == 21:
                     handle_blackjack(player, dealer, deck, bet)
                     
-                if player_hand_value > 21:
+                if Player_hand_value > 21:
                     print("Bust! House wins!")
                     
                     if player.GetCash() == 0:
                         print("No more money, you lose!")
                         return
 
-                if player_hand_value >= 21:
+                if Player_hand_value >= 21:
                     player.EmptyHand()
                     dealer.EmptyHand()
 
