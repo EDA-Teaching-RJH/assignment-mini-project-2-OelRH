@@ -7,3 +7,4 @@ class dealer(player): #The dealer just shows their hand after the player
         else:
             print("Dealer's hand:", self.hand)
 
+

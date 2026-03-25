@@ -60,6 +60,32 @@ def calculate_hand_value(hand):
     
     return hand_value
 
+def handle_blackjack(player, dealer, deck, bet):
+    dealer_hand_value = handle_dealer(dealer.GetHand(), dealer, deck)
+
+    if dealer_hand_value == 21:
+        sleep(0.5)
+        print("Push (Tie)")
+        player.SetCash(player.GetCash() + bet)
+
+    else:
+        sleep(0.5)
+        print("BLACK JACK!")
+        player.SetCash(player.GetCash() + (bet * 2))
+
+def handle_dealer(hand, dealer, deck):
+    sleep(0.5)
+    dealer.ShowHand()
+    hand_value = calculate_hand_value(hand)
+
+    while hand_value < 17:
+        dealer.GetCard(deck.deal())
+        hand_value = calculate_hand_value(hand)
+        sleep(0.5)
+        dealer.ShowHand()
+
+    return hand_value
+
 
 
 
