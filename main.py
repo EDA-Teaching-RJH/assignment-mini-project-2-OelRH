@@ -35,7 +35,10 @@ def main():
         player.EmptyHand()
         dealer.EmptyHand()
 
-    
+        if handle_continual_play():
+            continue
+        else:
+            return
 
 def handle_bet(player):
     while True:
