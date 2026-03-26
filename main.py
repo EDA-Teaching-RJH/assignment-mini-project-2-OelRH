@@ -94,11 +94,19 @@ def main():
                 if Player_hand_value == 21:
                     handle_blackjack(Player, Dealer, deck, bet)
                     
-                if Player_hand_value > 21:
+                elif Player_hand_value > 21:
                     print("Bust! House wins!")
                     
                     if Player.GetCash() == 0:
                         print("No more money, you lose!")
+                        return
+                    
+                    player.EmptyHand
+                    dealer.EmptyHand
+
+                    if handle_continual_play():
+                        break
+                    else:
                         return
 
                 if Player_hand_value >= 21:

@@ -5,6 +5,6 @@ class dealer(player): #The dealer just shows their hand after the player
         if round_no == 1:
             print("Dealer's hand:", self.hand[1])
         else:
-            print("Dealer's hand:", self.hand)
+            print("Dealer's hand:", ", ".join(str(card) for card in self.hand))
 
 
