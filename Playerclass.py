@@ -1,7 +1,7 @@
 class player:
     def __init__ (self):
         self.hand = []
-        self.cash = 100 #some value, will research a better one if needed
+        self.cash = 500 #some value, will research a better one if needed
         
     def GetHand(self): 
         return self.hand

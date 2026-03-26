@@ -12,7 +12,7 @@ def main():
     Player = player()
     Dealer = dealer()
 
-    print(f"Welcome to Black Jack: \nStarting cash: {Player.cash}\n ")
+    print(f"\nWelcome to Black Jack!: \n\nStarting cash: £{Player.cash}\n ")
 
     while True:
         print(f"Current cash: £{Player.GetCash()}\n ")
@@ -59,7 +59,7 @@ def main():
                     print("Dealer bust, Player wins!")
                     Player.SetCash(Player.GetCash() + (bet * 2))
                 
-                elif Dealer_hand_value < player_hand_value:
+                elif Dealer_hand_value < Player_hand_value:
                     sleep(0.5)
                     print("Player wins!")
                     Player.SetCash(Player.GetCash() + (bet * 2))
@@ -71,7 +71,7 @@ def main():
                     if Player.GetCash() == 0:
                         print("No more money, you lose!")
 
-                elif Dealer_hand_value == player_hand_value:
+                elif Dealer_hand_value == Player_hand_value:
                     sleep(0.5)
                     print("Push, draw")
                     Player.SetCash(Player.GetCash() + bet)
@@ -154,14 +154,14 @@ def handle_blackjack(player, dealer, deck, bet):
 
 def handle_dealer(hand, dealer, deck):
     sleep(0.5)
-    dealer.ShowHand()
+    dealer.showhand()
     hand_value = calculate_hand_value(hand)
 
     while hand_value < 17:
         dealer.GetCard(deck.deal())
         hand_value = calculate_hand_value(hand)
         sleep(0.5)
-        dealer.ShowHand()
+        dealer.showhand()
 
     return hand_value
 
