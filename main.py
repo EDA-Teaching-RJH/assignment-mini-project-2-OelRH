@@ -12,7 +12,7 @@ def main():
     Player = player()
     Dealer = dealer()
 
-    print(f"Welcome to the Black Parade \n Starting cash: {Player.cash}\n ")
+    print(f"Welcome to Black Jack: \nStarting cash: {Player.cash}\n ")
 
     while True:
         print(f"Current cash: £{Player.GetCash()}\n ")
@@ -24,7 +24,7 @@ def main():
             Player.GetCard(deck.deal())
             Dealer.GetCard(deck.deal())
 
-        Player.showhand()
+        Player.ShowHand()
         Dealer.showhand(1)
 
         Player_hand_value = calculate_hand_value(Player.GetHand())
